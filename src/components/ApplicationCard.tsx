@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { JobApplication, Status } from "../types";
 
 const STATUSES: Status[] = [
@@ -21,6 +22,7 @@ export function ApplicationCard({
 }: Props) {
   const { id, company, jobTitle, dateApplied, status, description } =
     application;
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <div className="card">
@@ -42,7 +44,16 @@ export function ApplicationCard({
         Applied: {new Date(dateApplied + "T00:00:00").toLocaleDateString()}
       </p>
 
-      {description && <p className="card-description">{description}</p>}
+      {description && (
+        <div>
+          <p className={`card-description${expanded ? " card-description--expanded" : ""}`}>
+            {description}
+          </p>
+          <button className="btn-show-more" onClick={() => setExpanded((e) => !e)}>
+            {expanded ? "Show less" : "Show more"}
+          </button>
+        </div>
+      )}
 
       <div className="card-footer">
         <span className={`status-badge status-${status.toLowerCase()}`}>

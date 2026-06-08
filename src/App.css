@@ -198,6 +198,26 @@
   overflow: hidden;
 }
 
+.card-description--expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+.btn-show-more {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 0;
+  text-decoration: underline;
+}
+
+.btn-show-more:hover {
+  color: var(--color-text);
+}
+
 .card-footer {
   display: flex;
   align-items: center;

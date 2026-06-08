@@ -32,7 +32,7 @@ export function ApplicationForm({ onAdd }: Props) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.company.trim() || !form.jobTitle.trim() || !form.dateApplied)
       return;
