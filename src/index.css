@@ -1,0 +1,47 @@
+:root {
+  --color-bg: #f8f7fa;
+  --color-surface: #ffffff;
+  --color-border: #e2e0e8;
+  --color-text: #3d3647;
+  --color-text-muted: #7a7385;
+  --color-heading: #1a1523;
+  --color-accent: #7c3aed;
+  --color-accent-hover: #6d28d9;
+
+  --status-applied: #3b82f6;
+  --status-interview: #f59e0b;
+  --status-offer: #10b981;
+  --status-rejected: #ef4444;
+
+  --radius: 10px;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  color: var(--color-heading);
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+input, select, textarea, button {
+  font: inherit;
+}
