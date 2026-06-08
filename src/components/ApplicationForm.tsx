@@ -1,7 +1,13 @@
 import { useState } from "react";
 import type { JobApplication, Status } from "../types";
 
-const STATUSES: Status[] = ["Applied", "Interview", "Offer", "Rejected"];
+const STATUSES: Status[] = [
+  "Applied",
+  "Interview",
+  "Offer",
+  "Rejected",
+  "No Answer",
+];
 
 const empty = {
   company: "",
