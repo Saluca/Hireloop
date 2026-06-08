@@ -46,10 +46,15 @@ export function ApplicationCard({
 
       {description && (
         <div>
-          <p className={`card-description${expanded ? " card-description--expanded" : ""}`}>
+          <p
+            className={`card-description${expanded ? " card-description--expanded" : ""}`}
+          >
             {description}
           </p>
-          <button className="btn-show-more" onClick={() => setExpanded((e) => !e)}>
+          <button
+            className="btn-show-more"
+            onClick={() => setExpanded((e) => !e)}
+          >
             {expanded ? "Show less" : "Show more"}
           </button>
         </div>
