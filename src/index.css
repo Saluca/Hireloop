@@ -38,6 +38,10 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
+.app-header h1 {
+  font-family: 'Stack Sans Notch', sans-serif;
+}
+
 p {
   margin: 0;
 }

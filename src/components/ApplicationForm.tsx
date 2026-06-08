@@ -1,30 +1,35 @@
-import { useState } from 'react';
-import type { JobApplication, Status } from '../types';
+import { useState } from "react";
+import type { JobApplication, Status } from "../types";
 
-const STATUSES: Status[] = ['Applied', 'Interview', 'Offer', 'Rejected'];
+const STATUSES: Status[] = ["Applied", "Interview", "Offer", "Rejected"];
 
 const empty = {
-  company: '',
-  jobTitle: '',
-  dateApplied: '',
-  status: 'Applied' as Status,
-  description: '',
+  company: "",
+  jobTitle: "",
+  dateApplied: "",
+  status: "Applied" as Status,
+  description: "",
 };
 
 interface Props {
-  onAdd: (data: Omit<JobApplication, 'id'>) => void;
+  onAdd: (data: Omit<JobApplication, "id">) => void;
 }
 
 export function ApplicationForm({ onAdd }: Props) {
   const [form, setForm] = useState(empty);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  function handleChange(
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.company.trim() || !form.jobTitle.trim() || !form.dateApplied) return;
+    if (!form.company.trim() || !form.jobTitle.trim() || !form.dateApplied)
+      return;
     onAdd(form);
     setForm(empty);
   }
@@ -39,7 +44,7 @@ export function ApplicationForm({ onAdd }: Props) {
           id="company"
           name="company"
           type="text"
-          placeholder="e.g. Acme Corp"
+          placeholder="e.g. Umbrella Corporation"
           value={form.company}
           onChange={handleChange}
           required
@@ -73,9 +78,16 @@ export function ApplicationForm({ onAdd }: Props) {
 
       <div className="form-row">
         <label htmlFor="status">Status</label>
-        <select id="status" name="status" value={form.status} onChange={handleChange}>
-          {STATUSES.map(s => (
-            <option key={s} value={s}>{s}</option>
+        <select
+          id="status"
+          name="status"
+          value={form.status}
+          onChange={handleChange}
+        >
+          {STATUSES.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
           ))}
         </select>
       </div>
@@ -92,7 +104,9 @@ export function ApplicationForm({ onAdd }: Props) {
         />
       </div>
 
-      <button type="submit" className="btn-primary">Add Application</button>
+      <button type="submit" className="btn-primary">
+        Add Application
+      </button>
     </form>
   );
 }

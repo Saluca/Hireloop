@@ -1,4 +1,9 @@
-export type Status = 'Applied' | 'Interview' | 'Offer' | 'Rejected';
+export type Status =
+  | "Applied"
+  | "Interview"
+  | "Offer"
+  | "Rejected"
+  | "No Answer";
 
 export interface JobApplication {
   id: string;

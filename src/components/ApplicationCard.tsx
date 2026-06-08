@@ -1,6 +1,12 @@
-import type { JobApplication, Status } from '../types';
+import type { JobApplication, Status } from "../types";
 
-const STATUSES: Status[] = ['Applied', 'Interview', 'Offer', 'Rejected'];
+const STATUSES: Status[] = [
+  "Applied",
+  "Interview",
+  "Offer",
+  "Rejected",
+  "No Answer",
+];
 
 interface Props {
   application: JobApplication;
@@ -8,8 +14,13 @@ interface Props {
   onDelete: (id: string) => void;
 }
 
-export function ApplicationCard({ application, onUpdateStatus, onDelete }: Props) {
-  const { id, company, jobTitle, dateApplied, status, description } = application;
+export function ApplicationCard({
+  application,
+  onUpdateStatus,
+  onDelete,
+}: Props) {
+  const { id, company, jobTitle, dateApplied, status, description } =
+    application;
 
   return (
     <div className="card">
@@ -27,22 +38,26 @@ export function ApplicationCard({ application, onUpdateStatus, onDelete }: Props
         </button>
       </div>
 
-      <p className="card-date">Applied: {new Date(dateApplied + 'T00:00:00').toLocaleDateString()}</p>
+      <p className="card-date">
+        Applied: {new Date(dateApplied + "T00:00:00").toLocaleDateString()}
+      </p>
 
-      {description && (
-        <p className="card-description">{description}</p>
-      )}
+      {description && <p className="card-description">{description}</p>}
 
       <div className="card-footer">
-        <span className={`status-badge status-${status.toLowerCase()}`}>{status}</span>
+        <span className={`status-badge status-${status.toLowerCase()}`}>
+          {status}
+        </span>
         <select
           className="status-select"
           value={status}
-          onChange={e => onUpdateStatus(id, e.target.value as Status)}
+          onChange={(e) => onUpdateStatus(id, e.target.value as Status)}
           aria-label="Update status"
         >
-          {STATUSES.map(s => (
-            <option key={s} value={s}>{s}</option>
+          {STATUSES.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
           ))}
         </select>
       </div>
