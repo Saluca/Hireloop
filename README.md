@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Hireloop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal job application tracker built with React, TypeScript, and Vite. Keep tabs on every role you've applied for — all stored locally in your browser, no account required.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Add applications** — log a company, job title, date applied, status, and optional job description or notes
+- **Track status** — update each application through five stages: Applied, Interview, Offer, Rejected, No Answer
+- **Expandable descriptions** — paste full job descriptions and toggle them open/closed on each card
+- **Delete entries** — remove applications you no longer need to track
+- **Persistent storage** — everything lives in `localStorage`, so your data survives page refreshes
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React 19](https://react.dev) + [TypeScript](https://www.typescriptlang.org)
+- [Vite](https://vite.dev) for dev server and bundling
+- No external state library — custom `useApplications` hook manages state and syncs to `localStorage`
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open [http://localhost:5173](http://localhost:5173).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Available scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Script            | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start development server with HMR    |
+| `npm run build`   | Type-check and build for production  |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint                           |
+
+## Project structure
+
 ```
+src/
+  components/
+    ApplicationCard.tsx   # Individual job card with status controls
+    ApplicationForm.tsx   # Form to add a new application
+    Dashboard.tsx         # Grid of all application cards
+  hooks/
+    useApplications.ts    # State management + localStorage persistence
+  types.ts                # JobApplication and Status types
+  App.tsx                 # Root layout
+```
+
+## Data model
+
+```ts
+interface JobApplication {
+  id: string;
+  company: string;
+  jobTitle: string;
+  dateApplied: string; // YYYY-MM-DD
+  status: "Applied" | "Interview" | "Offer" | "Rejected" | "No Answer";
+  description: string;
+}
+```
+
+Data is stored under the `hireloop_applications` key in `localStorage`.
