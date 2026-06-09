@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import type { JobApplication, Status } from '../types';
+import { useState } from "react";
+import type { JobApplication, Status } from "../types";
 
-const STORAGE_KEY = 'hireloop_applications';
+const STORAGE_KEY = "hireloop_applications";
 
 function load(): JobApplication[] {
   try {
@@ -19,20 +19,20 @@ function save(applications: JobApplication[]) {
 export function useApplications() {
   const [applications, setApplications] = useState<JobApplication[]>(load);
 
-  function addApplication(data: Omit<JobApplication, 'id'>) {
+  function addApplication(data: Omit<JobApplication, "id">) {
     const next = [{ ...data, id: crypto.randomUUID() }, ...applications];
     setApplications(next);
     save(next);
   }
 
   function updateStatus(id: string, status: Status) {
-    const next = applications.map(a => (a.id === id ? { ...a, status } : a));
+    const next = applications.map((a) => (a.id === id ? { ...a, status } : a));
     setApplications(next);
     save(next);
   }
 
   function deleteApplication(id: string) {
-    const next = applications.filter(a => a.id !== id);
+    const next = applications.filter((a) => a.id !== id);
     setApplications(next);
     save(next);
   }

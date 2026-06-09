@@ -55,7 +55,7 @@ interface JobApplication {
   id: string;
   company: string;
   jobTitle: string;
-  dateApplied: string; // YYYY-MM-DD
+  dateApplied: string; // DD-MM-YYYY
   status: "Applied" | "Interview" | "Offer" | "Rejected" | "No Answer";
   description: string;
 }
