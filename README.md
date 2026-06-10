@@ -1,6 +1,6 @@
 # Hireloop
 
-A minimal job application tracker built with React, TypeScript, and Vite. Keep tabs on every role you've applied for — all stored locally in your browser, no account required.
+A minimal job application tracker built with React, TypeScript, and Vite. Keep tabs on every role you've applied for, all stored locally in your browser, no account required.
 
 ## Features
 
