@@ -13,8 +13,12 @@ function load(): JobApplication[] {
 }
 
 function save(applications: JobApplication[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(applications));
-}
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(applications));
+  } catch (err) {
+    console.error("Couldn't save applications to localStorage:", err);
+  }
+} // added try catch block here similar to the load function to handle potential errors when saving to localStorage
 
 export function useApplications() {
   const [applications, setApplications] = useState<JobApplication[]>(load);
